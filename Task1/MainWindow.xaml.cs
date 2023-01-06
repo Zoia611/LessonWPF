@@ -31,7 +31,7 @@ namespace Task1
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string fontName = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+            string fontName=((sender as ComboBox).SelectedItem as string);
             if (textBox != null)
             {
                 textBox.FontFamily = new FontFamily(fontName);
@@ -42,7 +42,7 @@ namespace Task1
         {
             if (textBox != null)
             {
-                double fontSize = Convert.ToDouble(((sender as ComboBox).SelectedItem as TextBlock).Text);
+                double fontSize = Convert.ToDouble(((sender as ComboBox).SelectedItem as string));
                 textBox.FontSize = fontSize;
             }
         }
@@ -112,8 +112,8 @@ namespace Task1
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             SeveFileDialog seveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Текстовый файл (*.txt)|*.txt|Все файлы (*.*)|*.*";
-            if (saveFileDialog.ShowDialog() == true)
+            saveFileDialog.Filter="Текстовый файл (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (saveFileDialog.ShowDialog()==true)
             {
                 File.WriteAllText(saveFileDialog.FileName, textBox1.Text);
             }
