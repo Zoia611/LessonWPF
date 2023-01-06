@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -22,16 +23,11 @@ namespace Task1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private object saveFileDialog;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public object saveFileDialog { get; private set; }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string fontName=((sender as ComboBox).SelectedItem as string);
+            string fontName=(sender as ComboBox).SelectedItem as string;
             if (textBox != null)
             {
                 textBox.FontFamily = new FontFamily(fontName);
@@ -42,8 +38,8 @@ namespace Task1
         {
             if (textBox != null)
             {
-                double fontSize = Convert.ToDouble(((sender as ComboBox).SelectedItem as string));
-                textBox.FontSize = fontSize;
+                string fontSize = (sender as ComboBox).SelectedItem as string;
+                textBox.FontSize = Convert.ToInt32(fontSize);
             }
         }
 
@@ -112,7 +108,7 @@ namespace Task1
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             SeveFileDialog seveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter="Текстовый файл (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            saveFileDialog.Filter = "Текстовый файл (*.txt)|*.txt|Все файлы (*.*)|*.*";
             if (saveFileDialog.ShowDialog()==true)
             {
                 File.WriteAllText(saveFileDialog.FileName, textBox1.Text);
@@ -123,5 +119,8 @@ namespace Task1
         {
             Application.Current.Shutdown();
         }
+
+
     }
+
 }

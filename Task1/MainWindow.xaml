@@ -11,18 +11,18 @@
         <CommandBinding Command="Save" Executed="MenuItem_Click_1"/>
         <CommandBinding Command="Exit" Executed="MenuItem_Click_2"/>
     </Window.CommandBindings>
-    <Grid>
+    <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu Margin="5" Padding="5">
             <MenuItem Header="_Файл">
-                <MenuItem Header="Открыть"/>
-                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Открыть" Command="ApplicationCommands.Open"/>
+                <MenuItem Header="Сохранить" Command="ApplicationCommands.Save"/>
                 <Separator/>
-                <MenuItem Header="Закрыть"/>
+                <MenuItem Header="Закрыть" Command="ApplicationCommands.Exit"/>
             </MenuItem>
             <MenuItem Header="_Правка"></MenuItem>
             <MenuItem Header="_Справка"></MenuItem>
@@ -61,10 +61,12 @@
                     <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked"/>
                     <RadioButton Content="Красный" Checked="RadioButton_Checked_1"/>
                 </StackPanel>
+                <ComboBox Name="themes" Width="150" SelectedIndex="0" Margin="5">
+                    <TextBlock Text="Светлая"/>
+                    <TextBlock Text="Темная"/>           
+                </ComboBox>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="textBox" Grid.Row="1" Margin="10,56.2,-0.4,145" Padding="5" FontSize="15" FontFamily="Arial" TextWrapping="Wrap" Grid.RowSpan="2">
-
-        </TextBox>
+        <TextBox x:Name="textBox" Grid.Row="1" Margin="10,56.2,-0.4,145" Padding="5" FontSize="15" FontFamily="Arial" TextWrapping="Wrap" Grid.RowSpan="2"/>
     </Grid>
 </Window>
