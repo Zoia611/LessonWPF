@@ -23,7 +23,7 @@ namespace Task1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public object saveFileDialog { get; private set; }
+       // public object saveFileDialog { get; private set; }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -107,7 +107,7 @@ namespace Task1
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            SeveFileDialog seveFileDialog = new SaveFileDialog();
+            SeveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Текстовый файл (*.txt)|*.txt|Все файлы (*.*)|*.*";
             if (saveFileDialog.ShowDialog()==true)
             {
@@ -120,7 +120,13 @@ namespace Task1
             Application.Current.Shutdown();
         }
 
-
+        private void themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Uri theme = new Uri("Light.xaml", UriKind.Relative);
+            ResourceDictionary themeDict = Application.LoadComponent(theme) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(themeDict);
+        }
     }
 
 }
